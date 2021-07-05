@@ -89,9 +89,12 @@ portfolio_product_ratio = [1, 1, 1, 1, 0]
 for i in range(300):
     random_num = random_numbers[i]
     random_date = earliest_date + (latest_date - earliest_date) * random_num
-    print(random_date, add_year(random_date))
+    # print(random_date, add_year(random_date))
     year_values = calculate_values(random_date, add_year(random_date))
     values_on_last_day.append(year_values[-1])
 
-print(np.average(values_on_last_day))  # here
-print(values_on_last_day, [1])
+print(np.average(values_on_last_day))
+print(np.percentile(values_on_last_day, 1))
+
+
+
