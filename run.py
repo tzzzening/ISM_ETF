@@ -19,18 +19,14 @@ def get_price_history(file_name) -> list:
     return price_history
 
 
-def add_year(day) -> date:
+def add_years(day, num_years) -> date:
     try:
-        return day.replace(year=day.year + 1)
+        return day.replace(year=day.year + num_years)
     except ValueError:
-        return day + (date(day.year + 1, 1, 1) - date(day.year, 1, 1))
+        return day + (date(day.year + num_years, 1, 1) - date(day.year, 1, 1))
 
 
 def add_day(day) -> date:
-    # try:
-    #     return day.replace(day=day.day + 1)
-    # except ValueError:
-    #     return day.replace(month=day.month + 1, day=1)  # will have error for new year
     return day + timedelta(days=1)
 
 
@@ -90,7 +86,7 @@ for i in range(300):
     random_num = random_numbers[i]
     random_date = earliest_date + (latest_date - earliest_date) * random_num
     # print(random_date, add_year(random_date))
-    year_values = calculate_values(random_date, add_year(random_date))
+    year_values = calculate_values(random_date, add_years(random_date, 1))
     values_on_last_day.append(year_values[-1])
 
 print(np.average(values_on_last_day))
